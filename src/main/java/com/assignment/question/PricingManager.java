@@ -1,7 +1,8 @@
 package com.assignment.question;
 
+// Part 3: Refactor PricingManager - implement strategy design pattern
 public class PricingManager {
-
+    /* Old Code Block
     private static final double BASE_FARE = 5.0; // Base fare amount
     private static final double PER_KILOMETER_RATE = 2.0; // Rate per kilometer
     private static final double PER_MINUTE_RATE = 0.5; // Rate per minute
@@ -24,5 +25,18 @@ public class PricingManager {
         }
         throw new IllegalArgumentException("Invalid pricing type");
     }
+    */
 
+    private PricingStrategy pricingStrategy;
+    // private PricingType pricingType;
+
+    // CTOR
+    public PricingManager(PricingType pricingType, PricingStrategy pricingStrategy) {
+        // this.pricingType = pricingType;
+        this.pricingStrategy = pricingStrategy;
+    }
+
+    public Double calculatePrice(RideDetails rideDetails) {
+        return this.pricingStrategy.calculatePrice(rideDetails);
+    }
 }
